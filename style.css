@@ -9,8 +9,6 @@
   --free: #1f7a4d;
   --warn-bg: #fff4e5;
   --warn-border: #f0c78a;
-  --todo-bg: #fff3c4;
-  --todo-text: #6b4f00;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.05);
   color-scheme: light;
 }
@@ -27,8 +25,6 @@
     --free: #5cc994;
     --warn-bg: #2e2416;
     --warn-border: #6b4f22;
-    --todo-bg: #4a3b00;
-    --todo-text: #ffe28a;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
     color-scheme: dark;
   }
@@ -45,8 +41,6 @@
   --free: #5cc994;
   --warn-bg: #2e2416;
   --warn-border: #6b4f22;
-  --todo-bg: #4a3b00;
-  --todo-text: #ffe28a;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
   color-scheme: dark;
 }
@@ -66,7 +60,18 @@ header.site, main, footer.site {
   padding: 0 16px;
 }
 
-header.site { padding-top: 20px; }
+header.site {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+header.site nav { display: flex; gap: 16px; font-size: 0.95rem; }
+header.site nav a { color: var(--muted); text-decoration: none; }
+header.site nav a:hover, header.site nav a[aria-current] { color: var(--text); text-decoration: underline; }
+header.site nav.langs { flex-basis: 100%; flex-wrap: wrap; gap: 4px 12px; font-size: 0.85rem; }
 footer.site {
   padding-top: 24px;
   padding-bottom: 32px;
@@ -77,9 +82,10 @@ footer.site {
 }
 
 a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .brand { font-weight: 700; text-decoration: none; color: var(--text); }
 
-h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.01em; }
+h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.01em; overflow-wrap: anywhere; }
 h2 { font-size: 1.35rem; margin: 48px 0 10px; }
 h3 { font-size: 1.05rem; margin: 24px 0 8px; }
 .lead { font-size: 1.12rem; color: var(--muted); margin: 0; }
@@ -159,7 +165,8 @@ h3.group.free { color: var(--free); }
   background: color-mix(in srgb, var(--brand, var(--accent)) 16%, transparent);
 }
 .method .body { display: grid; min-width: 0; }
-.method .name { font-weight: 650; }
+.method .name { font-weight: 650; overflow-wrap: anywhere; }
+.method code { overflow-wrap: anywhere; }
 .method .kind { color: var(--muted); font-size: 0.9rem; }
 
 .method .cta {
@@ -171,7 +178,8 @@ h3.group.free { color: var(--free); }
   font-size: 0.88rem;
   white-space: nowrap;
 }
-.method .cta::after { content: " →"; }
+/* The arrow is decorative: the empty alt text after "/" keeps it out of the link's accessible name. */
+.method .cta::after { content: " →"; content: " →" / ""; }
 
 @media (max-width: 480px) {
   .method { grid-template-columns: auto 1fr; }
@@ -243,16 +251,7 @@ h3.group.free { color: var(--free); }
 
 code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.9em; font-variant-ligatures: none; }
 
-/* Placeholders still to fill in before publishing. */
-.todo {
-  background: var(--todo-bg);
-  color: var(--todo-text);
-  border-radius: 4px;
-  padding: 0 4px;
-}
-.todo::before { content: "TODO: "; font-weight: 600; }
-
 @media (prefers-reduced-motion: reduce) {
   .pill, .method { transition: none; }
-  .pill:hover, .method:hover { transform: none; }
+  .pill:hover, .pill:focus-visible, .method:hover, .method:focus-visible { transform: none; }
 }
