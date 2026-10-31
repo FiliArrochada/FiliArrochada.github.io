@@ -3,19 +3,18 @@
 The FiliArrochada organisation's GitHub Pages site, served at `https://filiarrochada.github.io/`.
 Plain HTML and one stylesheet: no build step, no scripts, no external requests.
 
+The projects live on the GitHub org page and its profile README (`.github` repo, `profile/README.md`),
+the only project list. This site exists for the support page.
+
 | Path | Page |
 |---|---|
-| `index.html` | Landing page: the org's projects and a link to support |
-| `support/index.html` | **Support Fili**, at `https://filiarrochada.github.io/support/`: every way to pay, cheapest first, the tiers, and how perks unlock |
-| `style.css` | Shared styles, light and dark |
+| `index.html` | Redirects to `https://github.com/FiliArrochada` |
+| `support/index.html` | **Support Fili**, at `https://filiarrochada.github.io/support/`: every working way to pay, lowest fee first, and what support pays for |
+| `support/pt/`, `support/fr/`, `support/it/` | The same page in Portuguese (Portugal), French and Italian. Keep all four in step, including the `hreflang` links in each `<head>` |
+| `style.css` | Styles for the support page, light and dark |
+| `robots.txt`, `sitemap.xml` | Crawler hints; add new pages to the sitemap |
 
-## Before the first push
+Pages source: deploy from branch, root.
 
-- [ ] GitHub Sponsors approved (the first link on the support page leads nowhere until then)
-- [ ] Fill every highlighted **TODO** on the support page (search for `class="todo"`): bank details,
-      MB WAY, contact email, tier prices, F-Droid. The yellow highlight shows exactly what's left
-- [ ] Repo named exactly `FiliArrochada.github.io` under the org; Pages source: deploy from branch, root
-
-When the projects list changes, update it here and in `FiliArrochada.github/profile/README.md`.
-The full plan, with the fee comparison and sources, is in the workspace's
-`.guidelines/fili-payment-options.md`.
+When GitHub Sponsors is approved, add it back to the support page as the first method (no fee for
+personal sponsors) and to the hero.
